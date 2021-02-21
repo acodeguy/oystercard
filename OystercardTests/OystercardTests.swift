@@ -43,9 +43,15 @@ class OystercardTests: XCTestCase {
         XCTAssertEqual(card.balance, 6.50)
     }
 
-    func testTouchingInStartsTheJourney() {
+    func testTouchingInStartsTheJourney() throws {
         card.touchIn()
 
-        XCTAssertEqual(card.inJourney, true)
+        XCTAssertEqual(card.isInJourney, true)
+    }
+
+    func testTouchingOutStopsTheJourney() throws {
+        card.touchOut()
+
+        XCTAssertEqual(card.isInJourney, false)
     }
 }

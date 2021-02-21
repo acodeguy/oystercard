@@ -1,5 +1,5 @@
 import XCTest
-@testable import Osytercard
+@testable import Oystercard
 
 class OystercardTests: XCTestCase {
 

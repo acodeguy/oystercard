@@ -6,8 +6,13 @@ class Oystercard {
     /// The current balance of this card
     var balance: Double = 0
 
+    /// The station at which the card was last touched-in
+    private(set) var entryStation: Station?
+
     /// Tracks if a journey is currently in-progress
-    var isInJourney: Bool = false
+    var isInJourney: Bool {
+        return entryStation == nil ? false : true
+    }
 
     /// The maximum balance allowed
     private let maximumBalance: Double = 90.00
@@ -16,7 +21,7 @@ class Oystercard {
     private let minimumFare: Double = 1.00
 
     /// Reduces the card's balance by the supplied amount
-    func deduct(_ amount: Double) {
+    private func deduct(_ amount: Double) {
         balance -= amount
     }
 
@@ -31,18 +36,18 @@ class Oystercard {
     }
 
     /// Touch-in at an Oystercard gate
-    func touchIn() throws {
+    func touchIn(at station: Station) throws {
         if balance >= minimumFare {
-            isInJourney = true
+            entryStation = station
         } else {
-            isInJourney = false
             throw OystercardError.balanceLowerThanMinimumFare
         }
     }
 
     /// Touch-out at an Oystercard gate
     func touchOut() {
-        isInJourney = false
+        entryStation = nil
+        deduct(minimumFare)
     }
 }
 

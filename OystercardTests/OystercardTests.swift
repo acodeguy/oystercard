@@ -38,17 +38,10 @@ class OystercardTests: XCTestCase {
         }
     }
 
-    func testDeductingCreditReducesTheBalance() throws {
-        try card.topup(10.00)
-
-        card.deduct(3.50)
-
-        XCTAssertEqual(card.balance, 6.50)
-    }
-
     func testTouchingInStartsTheJourney() throws {
         try card.topup(1)
-        try card.touchIn()
+        let station = Station(name: "Vauxhall")
+        try card.touchIn(at: station)
 
         XCTAssertEqual(card.isInJourney, true)
     }
@@ -60,9 +53,36 @@ class OystercardTests: XCTestCase {
     }
 
     func testTouchingInWithLessThanTheMinimumFareThrowsAnError() throws {
-        XCTAssertThrowsError(try card.touchIn(), "Minimum fare required") { error in
+        let station = Station(name: "London Bridge")
+        XCTAssertThrowsError(try card.touchIn(at: station), "Minimum fare required") { error in
             XCTAssertEqual(card.isInJourney, false)
             XCTAssertEqual(error as! OystercardError, OystercardError.balanceLowerThanMinimumFare)
         }
+    }
+
+    func testTouchingOutDeductsTheMinimumFare() throws {
+        try card.topup(5.00)
+
+        card.touchOut()
+
+        XCTAssertEqual(card.balance, 4.00)
+    }
+
+    func testTouchingInRecordsTheEntryStation() throws {
+        try card.topup(3.00)
+        let station = Station(name: "Finsbury Park")
+        try card.touchIn(at: station)
+
+        XCTAssertEqual(card.entryStation?.name, station.name)
+    }
+
+    func testTouchingOutForgetsTheEntryStation() throws {
+        try card.topup(3.00)
+        let station = Station(name: "Finsbury Park")
+        try card.touchIn(at: station)
+
+        card.touchOut()
+
+        XCTAssertNil(card.entryStation)
     }
 }

@@ -12,6 +12,9 @@ class Oystercard {
     /// The maximum balance allowed
     private let maximumBalance: Double = 90.00
 
+    /// The minimum balance allowed to travel
+    private let minimumFare: Double = 1.00
+
     /// Reduces the card's balance by the supplied amount
     func deduct(_ amount: Double) {
         balance -= amount
@@ -28,8 +31,13 @@ class Oystercard {
     }
 
     /// Touch-in at an Oystercard gate
-    func touchIn() {
-        isInJourney = true
+    func touchIn() throws {
+        if balance >= minimumFare {
+            isInJourney = true
+        } else {
+            isInJourney = false
+            throw OystercardError.balanceLowerThanMinimumFare
+        }
     }
 
     /// Touch-out at an Oystercard gate
@@ -41,4 +49,5 @@ class Oystercard {
 /// Errors that can be thrown by an Oystercard
 enum OystercardError: Error {
     case maximumBalanceExceeded
+    case balanceLowerThanMinimumFare
 }

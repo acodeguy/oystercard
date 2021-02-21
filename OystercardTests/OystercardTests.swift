@@ -12,6 +12,8 @@ class OystercardTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
 
+        continueAfterFailure = true
+
         card = Oystercard()
     }
 
@@ -32,6 +34,7 @@ class OystercardTests: XCTestCase {
     func testToppingUpFundsFailsIfBalanceWouldBeGreaterThanTheMaximumAllowed() throws {
         XCTAssertThrowsError(try card.topup(90.01), "Balance would exceed maximum allowed") { error in
             XCTAssertEqual(card.balance, 0)
+            XCTAssertEqual(error as! OystercardError, OystercardError.maximumBalanceExceeded)
         }
     }
 
@@ -44,7 +47,8 @@ class OystercardTests: XCTestCase {
     }
 
     func testTouchingInStartsTheJourney() throws {
-        card.touchIn()
+        try card.topup(1)
+        try card.touchIn()
 
         XCTAssertEqual(card.isInJourney, true)
     }
@@ -53,5 +57,12 @@ class OystercardTests: XCTestCase {
         card.touchOut()
 
         XCTAssertEqual(card.isInJourney, false)
+    }
+
+    func testTouchingInWithLessThanTheMinimumFareThrowsAnError() throws {
+        XCTAssertThrowsError(try card.touchIn(), "Minimum fare required") { error in
+            XCTAssertEqual(card.isInJourney, false)
+            XCTAssertEqual(error as! OystercardError, OystercardError.balanceLowerThanMinimumFare)
+        }
     }
 }

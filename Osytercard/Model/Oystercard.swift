@@ -9,17 +9,23 @@ class Oystercard {
     /// The maximum balance allowed
     private let maximumBalance: Double = 90.00
 
+    /// Reduces the card's balance by the supplied amount
+    func deduct(_ amount: Double) {
+        balance -= amount
+    }
+
     /// Increase this card's balance by the supplied amount
     func topup(_ amount: Double) throws {
         let projectedBalance = balance + amount
         if projectedBalance < maximumBalance {
             balance += amount
         } else {
-            throw TopupError.maximumBalanceExceeded
+            throw OystercardError.maximumBalanceExceeded
         }
     }
 }
 
-enum TopupError: Error {
+/// Errors that can be thrown by an Oystercard
+enum OystercardError: Error {
     case maximumBalanceExceeded
 }

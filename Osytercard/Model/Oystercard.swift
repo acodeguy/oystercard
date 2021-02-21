@@ -6,6 +6,9 @@ class Oystercard {
     /// The current balance of this card
     var balance: Double = 0
 
+    /// Tracks if a journey is currently in-progress
+    var inJourney: Bool = false
+
     /// The maximum balance allowed
     private let maximumBalance: Double = 90.00
 
@@ -22,6 +25,11 @@ class Oystercard {
         } else {
             throw OystercardError.maximumBalanceExceeded
         }
+    }
+
+    /// Touch-in at an Oystercards gate
+    func touchIn() {
+        inJourney = true
     }
 }
 

@@ -1,5 +1,7 @@
 import Foundation
 
+// MARK: - Station
+
 /// A station on the TfL network
 struct Station {
 
@@ -13,3 +15,7 @@ struct Station {
         self.name = name
     }
 }
+
+// MARK: - Hashable
+
+extension Station: Hashable {}

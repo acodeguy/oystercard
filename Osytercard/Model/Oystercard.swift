@@ -9,10 +9,16 @@ class Oystercard {
     /// The station at which the card was last touched-in
     private(set) var entryStation: Station?
 
+    /// The station at which the card was touched-out
+    private(set) var exitStation: Station?
+
     /// Tracks if a journey is currently in-progress
     var isInJourney: Bool {
         return entryStation == nil ? false : true
     }
+
+    /// The journeys made using this card
+    var journeyHistory: JourneyHistory?
 
     /// The maximum balance allowed
     private let maximumBalance: Double = 90.00
@@ -23,6 +29,12 @@ class Oystercard {
     /// Reduces the card's balance by the supplied amount
     private func deduct(_ amount: Double) {
         balance -= amount
+    }
+
+    // MARK: Lifecycle methods
+
+    init(journeyHistory: JourneyHistory = JourneyHistory()) {
+        self.journeyHistory = journeyHistory
     }
 
     /// Increase this card's balance by the supplied amount
@@ -45,11 +57,26 @@ class Oystercard {
     }
 
     /// Touch-out at an Oystercard gate
-    func touchOut() {
+    func touchOut(at station: Station) {
+        addJourneyToJourneyHistory(from: entryStation, to: station)
         entryStation = nil
+        exitStation = nil
         deduct(minimumFare)
     }
+
+    /// Adds a `Journey` to the journey history
+    private func addJourneyToJourneyHistory(from entryStation: Station?, to exitStation: Station) {
+        guard let entryStation = entryStation,
+              let journeyHistory = journeyHistory else {
+            return
+        }
+
+        let journey = Journey(entryStation: entryStation, exitStation: exitStation)
+        journeyHistory.add(journey)
+    }
 }
+
+// MARK: - OystercardError
 
 /// Errors that can be thrown by an Oystercard
 enum OystercardError: Error {

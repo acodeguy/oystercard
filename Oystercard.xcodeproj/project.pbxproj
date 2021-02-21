@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E0B8B28525E300E200E7DA02 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B8B28425E300E100E7DA02 /* Station.swift */; };
+		E0C15A0F25E31A8300F825A2 /* JourneyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C15A0E25E31A8300F825A2 /* JourneyHistory.swift */; };
 		E0FC0B5125E29772009CDEA2 /* OsytercardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FC0B5025E29772009CDEA2 /* OsytercardApp.swift */; };
 		E0FC0B5325E29772009CDEA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FC0B5225E29772009CDEA2 /* ContentView.swift */; };
 		E0FC0B5525E29772009CDEA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FC0B5425E29772009CDEA2 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		E0B8B28425E300E100E7DA02 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		E0C15A0E25E31A8300F825A2 /* JourneyHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyHistory.swift; sourceTree = "<group>"; };
 		E0FC0B4D25E29772009CDEA2 /* Oystercard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oystercard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FC0B5025E29772009CDEA2 /* OsytercardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsytercardApp.swift; sourceTree = "<group>"; };
 		E0FC0B5225E29772009CDEA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				E0FC0B7125E2984C009CDEA2 /* Oystercard.swift */,
 				E0B8B28425E300E100E7DA02 /* Station.swift */,
+				E0C15A0E25E31A8300F825A2 /* JourneyHistory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				E0FC0B5325E29772009CDEA2 /* ContentView.swift in Sources */,
 				E0B8B28525E300E200E7DA02 /* Station.swift in Sources */,
 				E0FC0B5125E29772009CDEA2 /* OsytercardApp.swift in Sources */,
+				E0C15A0F25E31A8300F825A2 /* JourneyHistory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

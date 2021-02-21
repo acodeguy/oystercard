@@ -47,7 +47,7 @@ class OystercardTests: XCTestCase {
     }
 
     func testTouchingOutStopsTheJourney() throws {
-        card.touchOut()
+        card.touchOut(at: Station(name: "xyz456"))
 
         XCTAssertEqual(card.isInJourney, false)
     }
@@ -63,7 +63,7 @@ class OystercardTests: XCTestCase {
     func testTouchingOutDeductsTheMinimumFare() throws {
         try card.topup(5.00)
 
-        card.touchOut()
+        card.touchOut(at: Station(name: "abc123"))
 
         XCTAssertEqual(card.balance, 4.00)
     }
@@ -81,8 +81,26 @@ class OystercardTests: XCTestCase {
         let station = Station(name: "Finsbury Park")
         try card.touchIn(at: station)
 
-        card.touchOut()
+        card.touchOut(at: Station(name: "jkl789"))
 
         XCTAssertNil(card.entryStation)
+    }
+
+    func testCompletingAJourneyAddsItToTheJourneyHistory() throws {
+        XCTAssertEqual(card.journeyHistory?.journeys.count, 0)
+        try card.topup(3.00)
+        let entryStation = Station(name: "Finsbury Park")
+        try card.touchIn(at: entryStation)
+
+        let exitStation = Station(name: "Pimlico")
+        card.touchOut(at: exitStation)
+
+        let journey = try XCTUnwrap(card.journeyHistory?.journeys.first)
+        XCTAssertEqual(journey.entryStation.name, entryStation.name)
+        XCTAssertEqual(journey.exitStation?.name, exitStation.name)
+
+        // set the touch-in/out stations back to nil
+        XCTAssertEqual(card.entryStation, nil)
+        XCTAssertEqual(card.exitStation, nil)
     }
 }

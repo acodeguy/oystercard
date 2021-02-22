@@ -7,12 +7,21 @@ struct Station {
 
     // MARK: Properties
 
-    var name: String
+    /// The name is this TfL station
+    let name: String
+
+    /// The zone in which this station is
+    let zone: Int
 
     // MARK: Lifecycle methods
 
-    init(name: String) {
+    init(name: String, zone: Int) throws {
         self.name = name
+        self.zone = zone
+
+        if zone < 1 || zone > 9 {
+            assertionFailure("Zones must be within the range of 1 through 9")
+        }
     }
 }
 

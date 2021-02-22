@@ -40,20 +40,21 @@ class OystercardTests: XCTestCase {
 
     func testTouchingInStartsTheJourney() throws {
         try card.topup(1)
-        let station = Station(name: "Vauxhall")
+        let station = try Station(name: "Vauxhall", zone: 2)
         try card.touchIn(at: station)
 
         XCTAssertEqual(card.isInJourney, true)
     }
 
     func testTouchingOutStopsTheJourney() throws {
-        card.touchOut(at: Station(name: "xyz456"))
+        let exitStation = try Station(name: "xyz456", zone: 1)
+        card.touchOut(at: exitStation)
 
         XCTAssertEqual(card.isInJourney, false)
     }
 
     func testTouchingInWithLessThanTheMinimumFareThrowsAnError() throws {
-        let station = Station(name: "London Bridge")
+        let station = try Station(name: "London Bridge", zone: 1)
         XCTAssertThrowsError(try card.touchIn(at: station), "Minimum fare required") { error in
             XCTAssertEqual(card.isInJourney, false)
             XCTAssertEqual(error as! OystercardError, OystercardError.balanceLowerThanMinimumFare)
@@ -63,14 +64,15 @@ class OystercardTests: XCTestCase {
     func testTouchingOutDeductsTheMinimumFare() throws {
         try card.topup(5.00)
 
-        card.touchOut(at: Station(name: "abc123"))
+        let exitStation = try Station(name: "abc123", zone: 1)
+        card.touchOut(at: exitStation)
 
         XCTAssertEqual(card.balance, 4.00)
     }
 
     func testTouchingInRecordsTheEntryStation() throws {
         try card.topup(3.00)
-        let station = Station(name: "Finsbury Park")
+        let station = try Station(name: "Finsbury Park", zone: 2)
         try card.touchIn(at: station)
 
         XCTAssertEqual(card.entryStation?.name, station.name)
@@ -78,10 +80,11 @@ class OystercardTests: XCTestCase {
 
     func testTouchingOutForgetsTheEntryStation() throws {
         try card.topup(3.00)
-        let station = Station(name: "Finsbury Park")
+        let station = try Station(name: "Finsbury Park", zone: 2)
         try card.touchIn(at: station)
 
-        card.touchOut(at: Station(name: "jkl789"))
+        let exitStation = try Station(name: "jkl789", zone: 4)
+        card.touchOut(at: exitStation)
 
         XCTAssertNil(card.entryStation)
     }
@@ -89,10 +92,10 @@ class OystercardTests: XCTestCase {
     func testCompletingAJourneyAddsItToTheJourneyHistory() throws {
         XCTAssertEqual(card.journeyHistory?.journeys.count, 0)
         try card.topup(3.00)
-        let entryStation = Station(name: "Finsbury Park")
+        let entryStation = try Station(name: "Finsbury Park", zone: 2)
         try card.touchIn(at: entryStation)
 
-        let exitStation = Station(name: "Pimlico")
+        let exitStation = try Station(name: "Pimlico", zone: 2)
         card.touchOut(at: exitStation)
 
         let journey = try XCTUnwrap(card.journeyHistory?.journeys.first)

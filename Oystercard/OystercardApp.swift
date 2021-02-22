@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct OsytercardApp: App {
+struct OystercardApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

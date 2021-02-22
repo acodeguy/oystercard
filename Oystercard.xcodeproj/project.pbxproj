@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		E0B8B28525E300E200E7DA02 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B8B28425E300E100E7DA02 /* Station.swift */; };
 		E0C15A0F25E31A8300F825A2 /* JourneyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C15A0E25E31A8300F825A2 /* JourneyHistory.swift */; };
-		E0FC0B5125E29772009CDEA2 /* OsytercardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FC0B5025E29772009CDEA2 /* OsytercardApp.swift */; };
+		E0FC0B5125E29772009CDEA2 /* OystercardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FC0B5025E29772009CDEA2 /* OystercardApp.swift */; };
 		E0FC0B5325E29772009CDEA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FC0B5225E29772009CDEA2 /* ContentView.swift */; };
 		E0FC0B5525E29772009CDEA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FC0B5425E29772009CDEA2 /* Assets.xcassets */; };
 		E0FC0B5825E29772009CDEA2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FC0B5725E29772009CDEA2 /* Preview Assets.xcassets */; };
@@ -31,7 +31,7 @@
 		E0B8B28425E300E100E7DA02 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		E0C15A0E25E31A8300F825A2 /* JourneyHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyHistory.swift; sourceTree = "<group>"; };
 		E0FC0B4D25E29772009CDEA2 /* Oystercard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oystercard.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0FC0B5025E29772009CDEA2 /* OsytercardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsytercardApp.swift; sourceTree = "<group>"; };
+		E0FC0B5025E29772009CDEA2 /* OystercardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OystercardApp.swift; sourceTree = "<group>"; };
 		E0FC0B5225E29772009CDEA2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E0FC0B5425E29772009CDEA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0FC0B5725E29772009CDEA2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		E0FC0B4425E29772009CDEA2 = {
 			isa = PBXGroup;
 			children = (
-				E0FC0B4F25E29772009CDEA2 /* Osytercard */,
+				E0FC0B4F25E29772009CDEA2 /* Oystercard */,
 				E0FC0B6525E297D4009CDEA2 /* OystercardTests */,
 				E0FC0B4E25E29772009CDEA2 /* Products */,
 			);
@@ -78,17 +78,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E0FC0B4F25E29772009CDEA2 /* Osytercard */ = {
+		E0FC0B4F25E29772009CDEA2 /* Oystercard */ = {
 			isa = PBXGroup;
 			children = (
 				E0FC0B7025E2983E009CDEA2 /* Model */,
-				E0FC0B5025E29772009CDEA2 /* OsytercardApp.swift */,
+				E0FC0B5025E29772009CDEA2 /* OystercardApp.swift */,
 				E0FC0B5225E29772009CDEA2 /* ContentView.swift */,
 				E0FC0B5425E29772009CDEA2 /* Assets.xcassets */,
 				E0FC0B5925E29772009CDEA2 /* Info.plist */,
 				E0FC0B5625E29772009CDEA2 /* Preview Content */,
 			);
-			path = Osytercard;
+			path = Oystercard;
 			sourceTree = "<group>";
 		};
 		E0FC0B5625E29772009CDEA2 /* Preview Content */ = {
@@ -220,7 +220,7 @@
 				E0FC0B7225E2984C009CDEA2 /* Oystercard.swift in Sources */,
 				E0FC0B5325E29772009CDEA2 /* ContentView.swift in Sources */,
 				E0B8B28525E300E200E7DA02 /* Station.swift in Sources */,
-				E0FC0B5125E29772009CDEA2 /* OsytercardApp.swift in Sources */,
+				E0FC0B5125E29772009CDEA2 /* OystercardApp.swift in Sources */,
 				E0C15A0F25E31A8300F825A2 /* JourneyHistory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,16 +366,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Osytercard/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Oystercard/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Z35B3KKDP;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Osytercard/Info.plist;
+				INFOPLIST_FILE = Oystercard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.acodeguy.Osytercard;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acodeguy.Oystercard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -388,16 +388,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Osytercard/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Oystercard/Preview Content\"";
 				DEVELOPMENT_TEAM = 4Z35B3KKDP;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Osytercard/Info.plist;
+				INFOPLIST_FILE = Oystercard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.acodeguy.Osytercard;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acodeguy.Oystercard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

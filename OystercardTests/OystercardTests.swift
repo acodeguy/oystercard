@@ -99,7 +99,7 @@ class OystercardTests: XCTestCase {
         card.touchOut(at: exitStation)
 
         let journey = try XCTUnwrap(card.journeyHistory?.journeys.first)
-        XCTAssertEqual(journey.entryStation.name, entryStation.name)
+        XCTAssertEqual(journey.entryStation?.name, entryStation.name)
         XCTAssertEqual(journey.exitStation?.name, exitStation.name)
 
         // set the touch-in/out stations back to nil

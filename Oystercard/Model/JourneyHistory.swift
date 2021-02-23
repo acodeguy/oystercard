@@ -23,7 +23,7 @@ struct Journey {
     // MARK: Properties
 
     /// The entry station for this journey
-    let entryStation: Station
+    let entryStation: Station?
 
     /// The exit station for this journey
     var exitStation: Station?

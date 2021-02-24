@@ -109,10 +109,10 @@
 		E0FC0B6525E297D4009CDEA2 /* OystercardTests */ = {
 			isa = PBXGroup;
 			children = (
-				E0FC0B6625E297D4009CDEA2 /* OystercardTests.swift */,
-				E0FC0B6825E297D4009CDEA2 /* Info.plist */,
-				E0C15A1C25E3E33C00F825A2 /* StationTests.swift */,
 				E059984825E5AD1700EB8183 /* FareCalculatorTests.swift */,
+				E0FC0B6825E297D4009CDEA2 /* Info.plist */,
+				E0FC0B6625E297D4009CDEA2 /* OystercardTests.swift */,
+				E0C15A1C25E3E33C00F825A2 /* StationTests.swift */,
 			);
 			path = OystercardTests;
 			sourceTree = "<group>";

@@ -63,8 +63,10 @@ class OystercardTests: XCTestCase {
 
     func testTouchingOutDeductsTheMinimumFare() throws {
         try card.topup(5.00)
+        let entryStation = try Station(name: "Finsbury Park", zone: 2)
+        try card.touchIn(at: entryStation)
+        let exitStation = try Station(name: "Green Park", zone: 1)
 
-        let exitStation = try Station(name: "abc123", zone: 1)
         card.touchOut(at: exitStation)
 
         XCTAssertEqual(card.balance, 4.00)

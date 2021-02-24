@@ -12,6 +12,9 @@ class Oystercard {
     /// The station at which the card was touched-out
     private(set) var exitStation: Station?
 
+    /// Calculates fares for the given journey
+    private let fareCalculator: FareCalculator?
+
     /// Tracks if a journey is currently in-progress
     var isInJourney: Bool {
         return entryStation == nil ? false : true
@@ -33,8 +36,9 @@ class Oystercard {
 
     // MARK: Lifecycle methods
 
-    init(journeyHistory: JourneyHistory = JourneyHistory()) {
+    init(journeyHistory: JourneyHistory = JourneyHistory(), fareCalculator: FareCalculator = FareCalculator()) {
         self.journeyHistory = journeyHistory
+        self.fareCalculator = fareCalculator
     }
 
     /// Increase this card's balance by the supplied amount
@@ -58,21 +62,24 @@ class Oystercard {
 
     /// Touch-out at an Oystercard gate
     func touchOut(at station: Station) {
-        addJourneyToJourneyHistory(from: entryStation, to: station)
-        entryStation = nil
-        exitStation = nil
-        deduct(minimumFare)
-    }
-
-    /// Adds a `Journey` to the journey history
-    private func addJourneyToJourneyHistory(from entryStation: Station?, to exitStation: Station) {
-        guard let entryStation = entryStation,
-              let journeyHistory = journeyHistory else {
+        guard let journeyHistory = journeyHistory else {
+            assertionFailure("No JourneyHistory found")
             return
         }
 
-        let journey = Journey(entryStation: entryStation, exitStation: exitStation)
+        guard let fareCalculator = fareCalculator else {
+            assertionFailure("No FareCalculator found")
+            return
+        }
+
+        let journey = Journey(entryStation: entryStation, exitStation: station)
         journeyHistory.add(journey)
+
+        let fare = fareCalculator.fare(for: journey)
+        deduct(fare)
+
+        self.entryStation = nil
+        self.exitStation = nil
     }
 }
 

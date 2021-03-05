@@ -10,7 +10,7 @@ class FareCalculatorTests: XCTestCase {
 
         let fare = fareCalculator.fare(for: journey)
 
-        XCTAssertEqual(fare, 1.00)
+        XCTAssertEqual(fare, 2.00)
     }
 
     func testReturnsThePenaltyFareWhenTheEntryStationIsMissing() throws {
@@ -31,6 +31,17 @@ class FareCalculatorTests: XCTestCase {
         let fare = fareCalculator.fare(for: journey)
 
         XCTAssertEqual(fare, 6.00)
+    }
+
+    func testChargesMinimumFareWhenNoZonesAreCrossed() throws {
+        let entryStation = try Station(name: "Vauxhall", zone: 2)
+        let exitStation = try Station(name: "Walthamstow Central", zone: 2)
+        let journey = Journey(entryStation: entryStation, exitStation: exitStation)
+        let fareCalculator = FareCalculator()
+
+        let fare = fareCalculator.fare(for: journey)
+
+        XCTAssertEqual(fare, 1.00)
     }
 }
 

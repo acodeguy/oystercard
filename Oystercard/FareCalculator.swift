@@ -11,6 +11,15 @@ class FareCalculator {
             return 6.00
         }
 
-        return 1.00
+        let minmumFare = 1.00
+
+        guard let entryZone = journey.entryStation?.zone,
+              let exitZone = journey.exitStation?.zone else {
+            return minmumFare
+        }
+
+        let zonesCrossed = entryZone.distance(to: exitZone)
+
+        return minmumFare + Double(zonesCrossed)
     }
 }

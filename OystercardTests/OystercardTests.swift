@@ -65,7 +65,7 @@ class OystercardTests: XCTestCase {
         try card.topup(5.00)
         let entryStation = try Station(name: "Finsbury Park", zone: 2)
         try card.touchIn(at: entryStation)
-        let exitStation = try Station(name: "Green Park", zone: 1)
+        let exitStation = try Station(name: "Arsenal", zone: 2)
 
         card.touchOut(at: exitStation)
 
